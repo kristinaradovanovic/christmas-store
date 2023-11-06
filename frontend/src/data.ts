@@ -66,15 +66,6 @@ export const productsData:Product[] = [
       },
       {
         "id": 8,
-        "name": "Christmas Garland",
-        "price": 16.99,
-        "stock": 70,
-        "description": "Festive Christmas garland for decorating your home.",
-        "category": "Garlands",
-        "image": "../images/christmas-garland.jpg"
-      },
-      {
-        "id": 9,
         "name": "Candles",
         "price": 10.99,
         "stock": 90,
@@ -83,7 +74,7 @@ export const productsData:Product[] = [
         "image": "../images/christmas-candles.jpg"
       },
       {
-        "id": 10,
+        "id": 9,
         "name": "Angel Tree Topper",
         "price": 19.99,
         "stock": 30,
@@ -92,7 +83,7 @@ export const productsData:Product[] = [
         "image": "../images/angel-tree-topper.jpg"
       },
       {
-        "id": 11,
+        "id": 10,
         "name": "Nutcracker Set",
         "price": 29.99,
         "stock": 25,
@@ -101,7 +92,7 @@ export const productsData:Product[] = [
         "image": "../images/nutcracker-set.jpg"
       },
       {
-        "id": 12,
+        "id": 11,
         "name": "Christmas Tablecloth",
         "price": 14.99,
         "stock": 45,
@@ -110,7 +101,7 @@ export const productsData:Product[] = [
         "image": "../images/christmas-tablecloth.jpg"
       },
       {
-        "id": 13,
+        "id": 12,
         "name": "Holiday Pillows",
         "price": 9.99,
         "stock": 55,
@@ -119,7 +110,7 @@ export const productsData:Product[] = [
         "image": "../images/christmas-pillow.jpg"
       },
       {
-        "id": 14,
+        "id": 13,
         "name": "Christmas Bells",
         "price": 6.99,
         "stock": 80,
@@ -128,7 +119,7 @@ export const productsData:Product[] = [
         "image": "../images/christmas-bells.jpg"
       },
       {
-        "id": 15,
+        "id": 14,
         "name": "Snowman Figurine",
         "price": 17.99,
         "stock": 35,
