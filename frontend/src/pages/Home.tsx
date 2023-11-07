@@ -1,54 +1,16 @@
 import { Row, Col} from 'react-bootstrap'
-import { Product } from '../types/Product'
-import { useReducer, useEffect} from "react"
-import axios from 'axios'
 import ProductItem from '../components/ProductItem'
-
-type State = {
-  products: Product[],
-  isLoading: boolean,
-}
-
-type Action =
-  | { type: 'FETCH_REQUEST' }
-  | {
-      type: 'FETCH_SUCCESS'
-      payload: Product[]
-    }
-
-
-  const initialState: State = {
-    products: [],
-    isLoading: true,
-  }
- 
-  const reducer = (state: State, action: Action) => {
-    switch (action.type) {
-      case 'FETCH_REQUEST':
-        return { ...state, loading: true }
-      case 'FETCH_SUCCESS':
-        return { ...state, products: action.payload, loading: false }
-      default:
-        return state
-    }
-  }
+import { useGetProductsQuery } from '../ReactHooks/productHooks'
 
 export default function Home() {
 
-  const [{ products }, dispatch] = useReducer<React.Reducer<State, Action>>(reducer, initialState)
+  const { data: products} = useGetProductsQuery()
 
-  useEffect(() => {
-    const fetchData = async () => {
-      dispatch({ type: 'FETCH_REQUEST' });
-      const result = await axios.get('/api/products');
-      
-      if (result.status === 200) {
-        dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
-      }
+  if (!products) {
+    return <div>Loading...</div>; 
   }
-  fetchData()
-  }, [])
-  
+
+
   return (
     <Row>
           {products.map(product => 
