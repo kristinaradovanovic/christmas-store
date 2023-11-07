@@ -1,8 +1,8 @@
 import { Row, Col} from 'react-bootstrap'
-import { Link } from 'react-router-dom'
 import { Product } from '../types/Product'
 import { useReducer, useEffect} from "react"
 import axios from 'axios'
+import ProductItem from '../components/ProductItem'
 
 type State = {
   products: Product[],
@@ -33,7 +33,6 @@ type Action =
     }
   }
 
-
 export default function Home() {
 
   const [{ products }, dispatch] = useReducer<React.Reducer<State, Action>>(reducer, initialState)
@@ -54,15 +53,7 @@ export default function Home() {
     <Row>
           {products.map(product => 
             <Col key={product.id} sm={6} md={4} lg={3}>
-              <Link to={'/product/' + product.id}>
-                <img 
-                  src={product.image} 
-                  alt={product.name} 
-                  className='product-image' />
-
-                <h2>{product.name}</h2>
-                <p>{product.price}$</p>
-              </Link>
+              <ProductItem product={product}/>
             </Col>
           )}
     </Row>

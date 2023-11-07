@@ -86,7 +86,7 @@ export const productsData:Product[] = [
         "id": 10,
         "name": "Nutcracker Set",
         "price": 29.99,
-        "stock": 25,
+        "stock": 0,
         "description": "Set of 2 decorative nutcrackers in classic holiday designs.",
         "category": "Figurines",
         "image": "../images/nutcracker-set.jpg"
@@ -113,7 +113,7 @@ export const productsData:Product[] = [
         "id": 13,
         "name": "Christmas Bells",
         "price": 6.99,
-        "stock": 80,
+        "stock": 0,
         "description": "Set of 12 jingling Christmas bells for decoration and crafts.",
         "category": "Decorations",
         "image": "../images/christmas-bells.jpg"
