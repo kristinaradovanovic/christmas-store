@@ -11,3 +11,11 @@ useQuery({
    ).data,
 })
 
+export const useGetProductInfoQuery = (id: number) =>
+  useQuery({
+    queryKey: ['products', id],
+    queryFn: async () => {
+      const response = await httpClient.get<Product>(`api/products/${id}`);
+      return response.data;
+    },
+});

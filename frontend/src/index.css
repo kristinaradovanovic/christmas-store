@@ -7,9 +7,14 @@
   -webkit-text-size-adjust: 100%;
 }
 
-
-/* Min design börjar här */
 .product-image {
   max-width: 400px;
   width: 100%;
+}
+
+img.large {
+  max-width: 100%; 
+  width: 60%; 
+  height: auto;
+  margin-left: 100px;
 }
