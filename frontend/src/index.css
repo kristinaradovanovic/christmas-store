@@ -18,3 +18,7 @@ img.large {
   height: auto;
   margin-left: 100px;
 }
+
+.navBarClass {
+  padding: 20px;
+}

@@ -1,17 +1,28 @@
-import { Navbar, Container, Nav} from 'react-bootstrap'
-import { Outlet } from 'react-router-dom'
+import { Navbar, Container, Nav, Badge} from 'react-bootstrap'
+import { Link, Outlet } from 'react-router-dom'
+import { useContext} from 'react'
+import { Store } from './Store'
 
 function App() {
+
+  const { state: { cart }, } = useContext(Store);
+  console.log('Current Cart State:', cart);
 
   return (
     <div className='d-flex flex-column vh-100'>
     <header>
-      <Navbar bg='dark' variant='dark' expand='lg' >
+      <Navbar bg='dark' variant='dark' expand='lg'  className='navBarClass'>
         <Container>
           <Navbar.Brand>Winter Wonderland Decor</Navbar.Brand>
         </Container>
         <Nav>
-          <a href="/cart" className='nav-link'>Cart</a>
+          <Link to="/cart" className='nav-link'>Cart
+            {cart.cartItems.length > 0 && (
+              <Badge pill bg='danger'>
+                {cart.cartItems.reduce((a,c) => a + c.quantity, 0 )}
+              </Badge>
+            )}
+          </Link>
         </Nav>
       </Navbar>
     </header>
