@@ -1,7 +1,10 @@
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { useGetProductInfoQuery } from "../ReactHooks/productHooks"
 import { Badge, Button, Col, Row } from "react-bootstrap";
-
+import { useContext, useEffect} from "react";
+import { Store } from "../Store";
+import {cartItemProduct} from '../utils'
+import { CartItem } from "../types/CartItems";
 
 export default function ProductDetailed() {
 
@@ -10,6 +13,40 @@ export default function ProductDetailed() {
   const productId = id ? parseInt(id, 10) : undefined;
   const { data: product } = useGetProductInfoQuery(productId || -1);
 
+  const {state, dispatch} = useContext(Store)
+  const {cart} = state
+
+  const navigate = useNavigate()
+
+  const addToCartFunction = () => {
+    const existingItem = localStorage.getItem('cartItems');
+    const cartItems = existingItem ? JSON.parse(existingItem) : [];
+
+    const existingCartItem = cartItems.find((x: CartItem) => x.id === product!.id);
+    const quantity = existingCartItem ? existingCartItem.quantity + 1 : 1;
+
+    const newCartItem: CartItem = { ...cartItemProduct(product!), quantity };
+
+    const updatedCartItems = existingCartItem
+      ? cartItems.map((item: CartItem) => (item.id === existingCartItem.id ? newCartItem : item))
+      : [...cartItems, newCartItem];
+
+    localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+
+    dispatch({
+      type: 'ADD_ITEM',
+      payload: newCartItem,
+    });
+
+    navigate('/cart');
+  };
+
+  useEffect(() => {
+    console.log('After adding to cart:', {
+      cartItems: cart.cartItems,
+      totalPrice: cart.totalPrice,
+    });
+  }, [cart.cartItems, cart.totalPrice]);
 
   return (
     <div>
@@ -31,7 +68,7 @@ export default function ProductDetailed() {
                 <br/>
                 <br/>
                 <br/>
-                <Button >Add to Cart</Button>
+                <Button onClick={addToCartFunction} >Add to Cart</Button>
               </>
             )}
         </Col>

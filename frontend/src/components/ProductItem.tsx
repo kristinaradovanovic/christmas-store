@@ -9,20 +9,26 @@ import { cartItemProduct } from "../utils";
 function ProductItem({ product }: { product: Product }) {
     const { dispatch } = useContext(Store);
   
-    const addToCartHandler = (item: CartItem) => {
+    const addToCartFunction = (item: CartItem) => {
       const existingItem = localStorage.getItem('cartItems');
       const cartItems = existingItem ? JSON.parse(existingItem) : [];
+
       const existItem = cartItems.find((x: CartItem) => x.id === product.id);
       const quantity = existItem ? existItem.quantity + 1 : 1;
+
       const newCartItem = { ...item, quantity };
+
+      const updatedCartItems = existItem
+      ? cartItems.map((item: CartItem) => (item.id === existItem.id ? newCartItem : item))
+      : [...cartItems, newCartItem];
+
+      localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
   
       dispatch({
         type: 'ADD_ITEM',
         payload: newCartItem,
       });
-  
-      localStorage.setItem('cartItems', JSON.stringify([...cartItems, newCartItem]));
-  
+      
       console.log('Cart Items in localStorage:', localStorage.getItem('cartItems'));
   
       console.log('Cart updated:', cartItems);
@@ -41,7 +47,7 @@ function ProductItem({ product }: { product: Product }) {
           {product.stock === 0 ? (
             <Button variant="light" disabled >Out of stock</Button>
           ) : (
-            <Button onClick={() => addToCartHandler(cartItemProduct(product))}>Add to cart</Button>
+            <Button onClick={() => addToCartFunction(cartItemProduct(product))}>Add to cart</Button>
           )}
         </Card.Body>
       </Card>

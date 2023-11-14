@@ -13,12 +13,15 @@ import Home from './pages/Home.tsx';
 import ProductDetailed from './pages/ProductDetailed.tsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import CartPage from './pages/CartPage.tsx';
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
        <Route index element={<Home/>}/>
        <Route path='product/:id' element={<ProductDetailed/>}/>
+       <Route path='/cart' element={<CartPage/>}/>
     </Route>
   )
 );
