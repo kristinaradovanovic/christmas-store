@@ -2,6 +2,7 @@ import { Navbar, Container, Nav, Badge} from 'react-bootstrap'
 import { Link, Outlet } from 'react-router-dom'
 import { useContext} from 'react'
 import { Store } from './Store'
+import { LinkContainer } from 'react-router-bootstrap';
 
 function App() {
 
@@ -13,7 +14,7 @@ function App() {
     <header>
       <Navbar bg='dark' variant='dark' expand='lg'  className='navBarClass'>
         <Container>
-          <Navbar.Brand>Winter Wonderland Decor</Navbar.Brand>
+          <LinkContainer to='/'><Navbar.Brand>Winter Wonderland Decor</Navbar.Brand></LinkContainer>
         </Container>
         <Nav>
           <Link to="/cart" className='nav-link'>Cart
