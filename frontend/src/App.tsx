@@ -17,7 +17,7 @@ function App() {
           <LinkContainer to='/'><Navbar.Brand>Winter Wonderland Decor</Navbar.Brand></LinkContainer>
         </Container>
         <Nav>
-          <Link to="/cart" className='nav-link'>Cart
+          <Link to="cart" className='nav-link'>Cart
             {cart.cartItems.length > 0 && (
               <Badge pill bg='danger'>
                 {cart.cartItems.reduce((a,c) => a + c.quantity, 0 )}

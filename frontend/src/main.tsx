@@ -14,6 +14,7 @@ import ProductDetailed from './pages/ProductDetailed.tsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import CartPage from './pages/CartPage.tsx';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const router = createBrowserRouter(

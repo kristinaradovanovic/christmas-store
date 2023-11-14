@@ -9,6 +9,5 @@ export type CartItem = {
 }
 
 export type Cart = {
-    totalPrice: number,
     cartItems: CartItem[],
 }

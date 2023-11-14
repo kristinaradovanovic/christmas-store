@@ -10,13 +10,13 @@ const initialState: StoreState = {
       cartItems: localStorage.getItem('cartItems')
         ? JSON.parse(localStorage.getItem('cartItems')!)
         : [],
-      totalPrice: 0,
     },
   }
   type Action =
   | { type: 'ADD_ITEM'; payload: CartItem }
   | { type: 'REMOVE_ITEM'; payload: CartItem }
   | { type: 'CLEAR' }
+
   
   const defaultDispatch: React.Dispatch<Action> = () => initialState
 
@@ -43,6 +43,14 @@ const initialState: StoreState = {
       
             localStorage.setItem('cartItems', JSON.stringify(cartItems));
             return { ...state, cart: { ...state.cart, cartItems } };
+          }
+
+          case 'REMOVE_ITEM': {
+            const cartItems = state.cart.cartItems.filter(
+              (item: CartItem) => item.id !== action.payload.id
+            )
+            localStorage.setItem('cartItems', JSON.stringify(cartItems))
+            return { ...state, cart: { ...state.cart, cartItems } }
           }
           default:
             return state;

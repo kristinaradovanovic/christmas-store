@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom"
 import { useGetProductInfoQuery } from "../ReactHooks/productHooks"
 import { Badge, Button, Col, Row } from "react-bootstrap";
-import { useContext, useEffect} from "react";
+import { useContext} from "react";
 import { Store } from "../Store";
 import {cartItemProduct} from '../utils'
 import { CartItem } from "../types/CartItems";
@@ -13,8 +13,8 @@ export default function ProductDetailed() {
   const productId = id ? parseInt(id, 10) : undefined;
   const { data: product } = useGetProductInfoQuery(productId || -1);
 
-  const {state, dispatch} = useContext(Store)
-  const {cart} = state
+  const {dispatch} = useContext(Store)
+
 
   const navigate = useNavigate()
 
@@ -41,13 +41,7 @@ export default function ProductDetailed() {
     navigate('/cart');
   };
 
-  useEffect(() => {
-    console.log('After adding to cart:', {
-      cartItems: cart.cartItems,
-      totalPrice: cart.totalPrice,
-    });
-  }, [cart.cartItems, cart.totalPrice]);
-
+ 
   return (
     <div>
       <Row>

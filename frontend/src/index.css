@@ -19,6 +19,10 @@ img.large {
   margin-left: 100px;
 }
 
+img.thumbnail{
+  height: 80px;
+}
+
 .navBarClass {
   padding: 20px;
 }
