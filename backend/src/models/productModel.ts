@@ -26,6 +26,9 @@ export class Product {
     @prop({required:true})
     public image!: string
 
+    @prop({ required: true, default: 0 })
+    public quantity!: number;
+
 }
 
 export const ProductModel = getModelForClass(Product)
