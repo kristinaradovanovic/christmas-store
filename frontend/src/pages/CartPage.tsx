@@ -23,8 +23,29 @@ export default function CartPage() {
   }
 
   const removeItemHandler = (item: CartItem) => {
-    dispatch({ type: 'REMOVE_ITEM', payload: item })
-  }
+    const updatedCartItems = cartItems.filter((cartItem) => cartItem.id !== item.id);
+    localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+  } 
+
+  const decreaseQuantityHandler = (item: CartItem) => {
+    const newQuantity = item.quantity - 1;
+    updateCartHandler(item, newQuantity);
+
+    const updatedCartItems = cartItems.map((cartItem) =>
+      cartItem.id === item.id ? { ...cartItem, quantity: newQuantity } : cartItem
+    );
+    localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+  };
+
+  const increaseQuantityHandler = (item: CartItem) => {
+    const newQuantity = item.quantity + 1;
+    updateCartHandler(item, newQuantity);
+
+    const updatedCartItems = cartItems.map((cartItem) =>
+      cartItem.id === item.id ? { ...cartItem, quantity: newQuantity } : cartItem
+    );
+    localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+  };
 
   return (
     <div>
@@ -45,7 +66,7 @@ export default function CartPage() {
                 </Col>
                 <Col md={3}>
                   <Button
-                    onClick={() => updateCartHandler(item, item.quantity - 1)}
+                    onClick={() => decreaseQuantityHandler(item)}
                     variant="light"
                     disabled={item.quantity === 1}
                   >
@@ -55,7 +76,7 @@ export default function CartPage() {
                   <span>{item.quantity}</span>{' '}
                   <Button
                     variant="light"
-                    onClick={() => updateCartHandler(item, item.quantity + 1)}
+                    onClick={() => increaseQuantityHandler(item)}
                     disabled={item.quantity === item.stock}
                   >
                    <FontAwesomeIcon icon={faSquarePlus} />

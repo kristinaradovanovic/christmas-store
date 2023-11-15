@@ -20,7 +20,6 @@ const MONGODB_URI =
       console.log('error')
   })
 
-
 const app = express();
 app.use(cors());
 app.use('/api/products', productRouter)
