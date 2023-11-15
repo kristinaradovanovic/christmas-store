@@ -11,10 +11,10 @@ function App() {
 
   return (
     <div className='d-flex flex-column vh-100'>
-    <header>
-      <Navbar bg='dark' variant='dark' expand='lg'  className='navBarClass'>
+    <header className="header">
+      <Navbar expand='lg'  className='navBarClass'>
         <Container>
-          <LinkContainer to='/'><Navbar.Brand>Winter Wonderland Decor</Navbar.Brand></LinkContainer>
+          <LinkContainer to='/'><Navbar.Brand className="white-text">Winter Wonderland Decor</Navbar.Brand></LinkContainer>
         </Container>
         <Nav>
           <Link to="cart" className='nav-link'>Cart
@@ -28,15 +28,11 @@ function App() {
       </Navbar>
     </header>
 
-    <main>
+    <main id='main'>
       <Container className='mt-3'>
         <Outlet/>
       </Container>
     </main>
-
-    <footer>
-      <div className='text-center'>@all rigts reserved</div>
-    </footer>
   </div>
   )
 }
